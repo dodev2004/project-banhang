@@ -34,7 +34,6 @@ class UserController extends Controller
         $data = $this->users->getAllUsers();
         $total = $data->count();
         $table = $data[0]->getTable();
-       
         return  view("backend.user.templates.quanlythanhvien.list",compact('data','total',"breadcrumbs","title","table"));
     }
     public function create(){

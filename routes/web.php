@@ -14,6 +14,12 @@ Route::prefix("admin")->group(function(){
     Route::get("/login",[AuthController::class,"login"])->name("admin.login");
     Route::post("/login/auth",[AuthController::class,"auth"])->name("admin.login.auth");
     Route::get("/logout",[AuthController::class,"logout"])->name("admin.logout");
+    Route::get("/register",[AuthController::class,"register"])->name("admin.register")->middleware("guest");
+    Route::post("/register/send",[AuthController::class,"registerToken"])->name("admin.register.token");
+    Route::get("/reset-acount",[AuthController::class,"forgetPassword"])->name("admin.forgetPassword")->middleware("guest") ; 
+    Route::post("/confirm-email",[AuthController::class,"confirmEmail"])->name("admin.confirmPassword");  
+    Route::get('password/reset/{token}', [AuthController::class, 'showResetForm'])->name('password.reset');
+    Route::post("/reset-password",[AuthController::class,"resetPassword"])->name('password.update');
 });
 Route::get("/",function(){
     return redirect()->route("admin.login");
@@ -59,3 +65,5 @@ Route::prefix("admin")->middleware("authLogin")->group(function(){
 // Ajax
 Route::get("ajax/getLocaion/index",[GetLocaitonAjax::class,"index"])->name("ajax.getLocation");
 Route::put("ajax/change_status",[ChangeStatusAjax::class,"change_status"])->name("ajax.changeStatus");
+
+

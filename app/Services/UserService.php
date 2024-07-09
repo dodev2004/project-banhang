@@ -23,7 +23,7 @@ class UserService implements UserServiceInterface
     public function create($data){
         try{
           DB::beginTransaction();
-          $this->userRespository->create($data);
+        $this->userRespository->create($data);
           DB::commit();
           return true;
         }
