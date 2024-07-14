@@ -34,12 +34,14 @@
                 </div>
             </div>
             <div class="ibox-content">
-                @include("backend.user.components.quanlythanhvien.fillter")
-                @include("backend.user.components.quanlythanhvien.table")   
-                
-                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
-                    {{  $data->appends(request()->query())->links()}}
+                <div class="table-responsive">
+                    @include("backend.user.components.quanlythanhvien.fillter")
+                    @include("backend.user.components.quanlythanhvien.table")   
+                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                        {{  $data->appends(request()->query())->links()}}
+                    </div>
                 </div>
+                
             </div>
         </div>
     

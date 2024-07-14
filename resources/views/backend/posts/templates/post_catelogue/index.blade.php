@@ -35,7 +35,7 @@
             </div>
             <div class="ibox-content">
                 <div class="table-responsive">
-                    <a style="margin-bottom: 20px" href="{{route("post-catelogue.create")}}" class="btn btn-success">Thêm mới <i class="fa fa-plus"></i> </a>
+                    <a style="margin-bottom: 20px" href="{{route("admin.post-catelogue.create")}}" class="btn btn-success">Thêm mới <i class="fa fa-plus"></i> </a>
                     @include("backend.posts.components.post_catelogue.table")
                 </div>
             </div>

@@ -12,7 +12,7 @@
           data.append("_token",_token);
           console.log(data);
            $.ajax({
-            url : '{{route('post-catelogue.update',$id)}}',
+            url : '{{route('admin.post-catelogue.update',$id)}}',
             type: "POST",
             dataType: "json",
             data : data,

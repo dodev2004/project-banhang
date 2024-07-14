@@ -79,7 +79,6 @@ use Illuminate\Support\Facades\DB;
         else{
             $id = 0;
         }
-       
         $resuilt = "";
         foreach($data as $item){
             if($target == "edit" && $item->id == $id){
@@ -144,7 +143,7 @@ use Illuminate\Support\Facades\DB;
         $resuilt = "<tr>";
         foreach($data as $item){
             if($item->parent_id== $parentId){
-                $routeEdit = route('post-catelogue.edit',[$item->id]);
+                $routeEdit = route('admin.post-catelogue.edit',[$item->id]);
                 $resuilt .="
                     <td><input type='checkbox' data-id='$item->id'></td>
                     <td>" . str_repeat('---|',$item->level). "$item->name</td>
@@ -153,13 +152,40 @@ use Illuminate\Support\Facades\DB;
                     <input type='hidden' name = '_token' value='" . csrf_token() . "' />" .
                    " <input type='hidden' value='$item->id' name='id'>
                     <button class='btn btn-sm btn-danger'><i class='fa-solid fa-trash'></i> Xóa</button>
-            </form>
+                    </form>
                         <a href='$routeEdit' class='btn btn-sm btn-info'><i class='fa fa-pencil'></i> Sửa</a>
                     </th>
                 ";
                 $resuilt.="</tr>"; 
                 if($this->hasChild($data,$item->id)){
                     $resuilt .= $this->renderListPostCatelogue($data,$item->id);
+                }
+            }
+           
+        }
+       
+        return $resuilt;
+    }
+    public function renderListProductCatelogue($data,$parentId= 0){
+        $resuilt = "<tr>";
+        foreach($data as $item){
+            if($item->parent_id== $parentId){
+                $routeEdit = route('admin.product_catelogue.edit',[$item->id]);
+                $resuilt .="
+                    <td><input type='checkbox' data-id='$item->id'></td>
+                    <td>" . str_repeat('---|',$item->level). "$item->name</td>
+                    <th class='text-center'>
+                    <form action='' method='POST' data-url='product-catelogue' class='form-delete'>
+                    <input type='hidden' name = '_token' value='" . csrf_token() . "' />" .
+                   " <input type='hidden' value='$item->id' name='id'>
+                    <button class='btn btn-sm btn-danger'><i class='fa-solid fa-trash'></i> Xóa</button>
+                    </form>
+                        <a href='$routeEdit' class='btn btn-sm btn-info'><i class='fa fa-pencil'></i> Sửa</a>
+                    </th>
+                ";
+                $resuilt.="</tr>"; 
+                if($this->hasChild($data,$item->id)){
+                    $resuilt .= $this->renderListProductCatelogue($data,$item->id);
                 }
             }
            

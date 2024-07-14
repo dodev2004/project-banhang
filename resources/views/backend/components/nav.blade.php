@@ -20,23 +20,28 @@
                     IN+
                 </div>
             </li>
-            <li class="{{ request()->is('admin/dashboard')  ? 'active' : '' }}" >
-                <a href="{{route('admin.dashboard')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
-            </li>
-            <li class="{{ request()->is('admin/users/*') || request()->is('admin/user_catelogue/*')  ? 'active' : '' }}">
-                    <a href="#"><i class="fa fa-user-circle"></i> <span class="nav-label">Quản lý thành viên</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="{{route("admin.user_catelogue")}}">Quản lý nhóm thành viên</a></li>
-                        <li><a href="{{route('admin.users')}}">Quản lý thành viên</a></li>
-                    </ul>
-            </li>
-            <li class="{{ request()->is('admin/post-catelogue/*') || request()->is('admin/post/*')  ? 'active' : '' }}">
-                <a href="#"><i class="fa fa-user-circle"></i> <span class="nav-label">Bài viết</span><span class="fa arrow"></span></a>
+            @foreach (config("sitebar") as $item)
+            @if ($item["childrenlevel"])
+            <li @foreach ($item['children'] as $route)
+             @if(request()->routeIs($route['route']. ".*") || request()->routeIs($route['route']))
+              class="active"
+             @endif
+             @endforeach >
+                <a href="#"><i class="fa fa-user-circle"></i> <span class="nav-label">{{$item["name"]}}</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li><a href="{{route("admin.post-catelogue")}}">Quản lý nhóm bài viết</a></li>
-                    <li><a href="{{route('admin.post')}}">Quản lý bài viết</a></li>
+                    @foreach($item["children"] as $children)
+                    <li  class="{{request()->routeIs($children['route'] . ".*") || request()->routeIs($children['route']) ? 'active' : ""}}"><a href="{{route($children['route'])}}">{{$children["name"]}}</a></li>  
+                    @endforeach
+                  
                 </ul>
-        </li>
+             </li>
+             @else
+             <li class="{{ request()->routeIs($item['route'])  ? 'active' : '' }}" >
+                <a href="{{route($item['route'])}}"><i class="fa fa-th-large"></i> <span class="nav-label">{{$item['name']}}</span></a>
+            </li>
+             @endif
+            @endforeach
+          
         </ul>
 
     </div>

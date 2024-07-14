@@ -21,7 +21,7 @@
             data.append("_token",_token); 
             data.append("catelogues",catelogues);
            $.ajax({
-            url : '{{route('post.update',request()->id)}}',
+            url : '{{route('admin.post.update',request()->id)}}',
             type: "POST",
             dataType: "json",
             data : data,

@@ -6,6 +6,17 @@
         icon: icon,
         confirmButtonText: 'Tiếp tục'
         }).then(function(res){
-            window.location.href = href
+            if(icon == "error"){
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Có lỗi xảy ra vui lòng thử lại',
+                    icon: 'error',
+                    confirmButtonText: 'Quay lại'
+                })   
+            }
+            else {
+                window.location.href = href
+            }
+            
         })
     }

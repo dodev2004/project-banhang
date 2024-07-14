@@ -20,6 +20,7 @@ class UserController extends Controller
         $this->provinces = $province;
         $this->districts = $district;   
         $this->wards = $ward;
+       
     }
     public function listGroupMember(){
        
@@ -52,7 +53,7 @@ class UserController extends Controller
         return view("backend.user.templates.quanlythanhvien.create",compact("breadcrumbs","title","provinces"));
     }
     public function store(StoreUserRequest $request){
-        $data = request()->except(["re-password","_token","avatar"]);
+        $data = $request->except(["re-password","_token","avatar"]);
         if($this->users->create($data)){
             return response()->json(["success","Thêm mới thành công"]);
         }

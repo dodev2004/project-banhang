@@ -46,7 +46,7 @@ class PostController extends Controller
             "name"=>"Quản lý bài viết"
         ],[
             "active"=>true,
-            "url"=> route("post.create"),
+            "url"=> route("admin.post.create"),
             "name"=>"Thêm bài viết"
          ]);  
          $breadcrumbs = $this->breadcrumbs;
@@ -88,7 +88,7 @@ class PostController extends Controller
             "name"=>"Quản lý bài viết"
         ],[
             "active"=>true,
-            "url"=> route("post.edit",$request->id),
+            "url"=> route("admin.post.edit",$request->id),
             "name"=>"Sửa bài viết"
          ]);  
          $breadcrumbs = $this->breadcrumbs;

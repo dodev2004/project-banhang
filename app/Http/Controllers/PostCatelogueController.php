@@ -35,10 +35,7 @@ class PostCatelogueController extends Controller
         $table_name = "Bảng quản lý chuyên mục bài viết";
         $post_catelogues = $this->postcatelogueService->getAllPosCatelogue();
         $breadcrumbs = $this->breadcrumbs;
-        $item = $this->model->find(1);
-    
-      
-           return  view("backend.posts.templates.post_catelogue.index",compact("breadcrumbs","title","table_name","post_catelogues"));
+        return  view("backend.posts.templates.post_catelogue.index",compact("breadcrumbs","title","table_name","post_catelogues"));
     }
 
     /**
@@ -49,12 +46,12 @@ class PostCatelogueController extends Controller
         $title = "quản lý chuyên mục bài viết";
         array_push($this->breadcrumbs,[
             "active"=>false,
-            "url"=> route("admin.users"),
-            "name"=>"Quản lý nhóm thành viên"
+            "url"=> route("admin.post-catelogue"),
+            "name"=>"Quản lý nhóm bài viết"
         ],[
             "active"=>true,
-            "url"=> route("admin.user_catelogue.create"),
-            "name"=>"Thêm nhóm thành viên"
+            "url"=> route("admin.post-catelogue.create"),
+            "name"=>"Thêm nhóm bài viết"
          ]);  
          $post_catelogues =$this->postcatelogueService->dropdownPostCatelogue();
      
@@ -93,12 +90,12 @@ class PostCatelogueController extends Controller
         $title = "quản lý chuyên mục bài viết";
         array_push($this->breadcrumbs,[
             "active"=>false,
-            "url"=> route("admin.users"),
-            "name"=>"Quản lý nhóm thành viên"
+            "url"=> route("admin.post-catelogue"),
+            "name"=>"Quản lý nhóm bài viết"
         ],[
             "active"=>true,
-            "url"=> route("admin.user_catelogue.create"),
-            "name"=>"Sửa nhóm thành viên"
+            "url"=> route("admin.post-catelogue.create"),
+            "name"=>"Sửa nhóm bài viết"
          ]);  
          $breadcrumbs = $this->breadcrumbs;
          return $this->postcatelogueService->PostCatelogueEdit($request,$title,$breadcrumbs);

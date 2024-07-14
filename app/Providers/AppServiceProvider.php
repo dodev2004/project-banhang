@@ -16,6 +16,13 @@ use App\Repositories\UserRepository;
 use App\Repositories\Interfaces\UserCatelogueRespositoryInterface;
 use App\Repositories\UserCatelogueRespository;
 use App\Repositories\PostRepository;
+use App\Repositories\Interfaces\AttributeRepositoryInterface ;
+use App\Repositories\AttributeRepository;
+use App\Repositories\AttributeValueRepository;
+use App\Repositories\Interfaces\AttributeValueRepositoryInterface;
+use App\Repositories\Interfaces\ProductCatelogueRepositoryInterface;
+use App\Repositories\ProductCatelogueRepository;
+
 // Service
 use App\Services\UserService;
 use App\Services\Interfaces\UserServiceInterface;
@@ -28,6 +35,12 @@ use App\Services\Interfaces\PostCatelogueServiceInterface;
 use App\Services\Interfaces\PostServiceInterface;
 use App\Services\PostCatelogueService;
 use App\Services\PostService;
+use App\Services\Interfaces\AttributeServiceInterface;
+use App\Services\AttributeService;
+use App\Services\Interfaces\AttributeValueServiceInterface;
+use App\Services\AttributeValueService;
+use App\Services\Interfaces\ProductCatelogueServiceInterface;
+use App\Services\ProductCatelogueService;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -43,7 +56,14 @@ class AppServiceProvider extends ServiceProvider
     PostCatelogueRepositoryInterface::class => PostCatelogueRespository::class,
     PostCatelogueServiceInterface::class => PostCatelogueService::class,
     PostRepositoryInterface::class =>PostRepository::class ,
-    PostServiceInterface::class=> PostService::class
+    PostServiceInterface::class=> PostService::class,
+    AttributeRepositoryInterface::class => AttributeRepository::class,  
+    AttributeServiceInterface::class => AttributeService::class,
+    AttributeValueRepositoryInterface::class => AttributeValueRepository::class,  
+    AttributeValueServiceInterface::class => AttributeValueService::class,
+    ProductCatelogueRepositoryInterface::class => ProductCatelogueRepository::class,
+    ProductCatelogueServiceInterface::class => ProductCatelogueService::class,
+
    ];
     public function register(): void
     {
@@ -59,5 +79,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrap();
+      
     }
 }

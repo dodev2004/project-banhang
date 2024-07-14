@@ -45,7 +45,7 @@
             </span>
         </td>
         <td style="text-align: center">
-             <a href="{{route('post.edit',$post["id"])}}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
+             <a href="{{route('admin.post.edit',$post["id"])}}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
             <form action="" method="POST" data-url="post" class="form-delete">
                 @method("DELETE")
                 @csrf
