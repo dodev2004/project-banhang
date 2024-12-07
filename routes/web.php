@@ -103,3 +103,4 @@ Route::get("ajax/getLocaion/index",[GetLocaitonAjax::class,"index"])->name("ajax
 Route::put("ajax/change_status",[ChangeStatusAjax::class,"change_status"])->name("ajax.changeStatus");
 
 
+Route::put("ajax/ddddddchange_status",[ChangeStatusAjax::class,"change_status"])->name("ajax.changeStatus");
